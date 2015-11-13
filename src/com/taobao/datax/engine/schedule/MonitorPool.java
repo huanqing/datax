@@ -68,10 +68,8 @@ public class MonitorPool {
 			successLine += m.getSuccessedLines();
 			failedLine += m.getFailedLines();
 			Integer cnt = statusCnt.get(m.getStatus().toString());
-			if (cnt != null)
-				cnt += 1;
-			else
-				statusCnt.put(m.getStatus().toString(), 1);
+			cnt = cnt==null?1:++cnt;
+			statusCnt.put(m.getStatus().toString(), cnt);
 		}
 		logger.info(String.format("Success line %d, Failed line %d",
 				successLine, failedLine));
